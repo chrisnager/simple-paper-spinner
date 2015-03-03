@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Simple paper-spinner</title>
+        <meta title="description" content="Single element Google Polymer paper-spinner">
+        <meta title="author" content="Chris Nager">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <base target="_blank">
+        <style>body{margin:0;font:300 1em/1.4 "Helvetica Neue",sans-serif;color:#114}header,main,footer{padding:2em}header,footer{background-color:#eee}h1,h2{font-weight:500}a{text-decoration:none;color:#0f9d58}a:hover,a:focus{text-decoration:underline}@media(min-width:30em){br{display:none}}button{border:1px solid;border-radius:.25em;font-size:.75em;cursor:pointer;display:block;box-sizing:border-box;padding:1em;margin:1em 0;height:auto;vertical-align:middle;-webkit-appearance:none;color:#0f9d58;background-color:transparent}button:hover,button:focus{border-color:#0f9d58;color:#fff;background-color:#0f9d58}pre{border:2px solid;border-radius:3px;padding:1em;white-space:pre-wrap}mark{background-color:rgba(244,180,0,.3)}</style>
+        <link rel="stylesheet" href="simple-paper-spinner.css">
+    </head>
+    <body>
+        <header>
+            <div class="spinner" data-options="large  blue" style="background-color:#eee" role="progressbar" aria-valuetext="Loading…"></div>
+            <h1>Simple <br><code>&lt;paper-spinner&gt;</code></h1>
+            <p>Intrigued by Keanu Lee's amazing <a href="//blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html">article</a> describing how he built the official <a href="//polymer.github.io/paper-spinner/components/paper-spinner/demo.html"><code>&lt;paper-spinner&gt;</code> Polymer element</a> seen in the <a href="//www.google.com/design/spec/components/progress-activity.html">Google Material Design spec</a>, I had to see if it was possible to simplify the spinner further by condensing it down to a single HTML element. My goal was to rebuild the paper-spinner in a way that was:</p>
+            <ul>
+                <li>Accessible ✓</li>
+                <li>Cross browser compatible (IE10+) ✓<a href="#note-1">*</a></li>
+                <li>A single HTML element ✓</li>
+                <li>HTML and CSS only ✓</li>
+                <li>Uses relative units for easy scalability ✓</li>
+                <li>Animated with strictly composite properties (<code>transform</code> and <code>opacity</code>) ✓<a href="#note-2">**</a></li>
+            </ul>
+            <p>Well…I got really close. Check it out. (Pull requests are more than welcome.)</p>
+        </header>
+
+        <main>
+            <h2>Default</h2>
+            <div class="spinner" role="progressbar" aria-valuetext="Loading…"></div>
+            <pre><code><mark>&lt;div class="spinner" role="progressbar" aria-valuetext="Loading…"&gt;&lt;/div&gt;</mark></code></pre>
+
+            <h2>Preset colors</h2>
+            <div class="spinner" data-options="blue" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner" data-options="red" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner" data-options="yellow" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner" data-options="green" role="progressbar" aria-valuetext="Loading…"></div>
+            <pre><code>&lt;div class="spinner" <mark>data-options="blue"</mark> role="progressbar" aria-valuetext="Loading…"&gt;&lt;/div&gt;</code></pre>
+
+            <h2>Preset sizes</h2>
+            <div class="spinner" role="progressbar" aria-valuetext="Loading…"></div>
+            <br>
+            <div class="spinner" data-options="large" role="progressbar" aria-valuetext="Loading…"></div>
+            <br>
+            <div class="spinner" data-options="xlarge" role="progressbar" aria-valuetext="Loading…"></div>
+            <pre><code>&lt;div class="spinner" <mark>data-options="large"</mark> role="progressbar" aria-valuetext="Loading…"&gt;&lt;/div&gt;</code></pre>
+
+            <h2>Completely custom</h2>
+            <div class="spinner" data-options="blue" style="font-size:71px;box-shadow: inset 0 0 0 2px" role="progressbar" aria-valuetext="Loading…"></div>
+            <br>
+            <div class="spinner" data-options="red" style="box-shadow:inset 0 0 0 1px" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner" data-options="yellow" style="box-shadow:inset 0 0 0 6px" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner" style="color:#f06;background-color:#afa" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner" data-options="blue" style="box-shadow:inset 0 0 0 .1875em,inset 0 0 0 .375em #db4437,inset 0 0 0 .5625em #f4b400,inset 0 0 0 .75em #0f9d58" role="progressbar" aria-valuetext="Loading…"></div>
+            <pre><code>&lt;div class="spinner" data-options="blue" <mark>style="font-size:71px;box-shadow:inset 0 0 0 2px"</mark> role="progressbar" aria-valuetext="Loading…"&gt;&lt;/div&gt;</code></pre>
+
+            <h2>Multicolor</h2>
+            <button class="toggle-multicolor">Toggle multicolor (invokes repaints)</button>
+            <br>
+            <div class="spinner  is-active" data-options="multicolor" role="progressbar" aria-valuetext="Loading…"></div>
+            <pre><code>&lt;div class="spinner" <mark>data-options="multicolor"</mark> role="progressbar" aria-valuetext="Loading…"&gt;&lt;/div&gt;</code></pre>
+
+            <h2>How it's done</h2>
+            <div class="spinner" data-options="debug  debug--1" role="progressbar" aria-valuetext="Loading…"></div>
+            <br>
+            <div class="spinner" data-options="debug  debug--2" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner" data-options="debug  debug--3" role="progressbar" aria-valuetext="Loading…"></div>
+            <div class="spinner  is-active" data-options="multicolor  debug  debug--4" role="progressbar" aria-valuetext="Loading…"></div>
+
+            <h2>Outstanding resources</h2>
+            <ul>
+                <li><a href="//csstriggers.com/">csstriggers.com</a></li>
+                <li><a href="//github.com/Polymer/paper-spinner">github.com (&lt;paper-spinner&gt;)</a></li>
+                <li><a href="//www.html5rocks.com/en/tutorials/speed/high-performance-animations/">html5rocks.com (high performance animations)</a></li>
+                <li><a href="//www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/">paulirish.com (translate animations)</a></li>
+                <li><a href="//developer.mozilla.org/en-US/docs/Web/CSS/transform">MDN (transform)</a></li>
+                <li><a href="//stackoverflow.com/questions/16234269/css-keyframed-animation-jumpy-in-ie10">stackoverflow.com (IE10 bug)</a></li>
+            </ul>
+            <hr>
+            <p id="note-1">*I use <code>clip-path: circle()</code>, which is not available in IE or Firefox, as a progressive enhancement only to remove small artifacts left over from the animations.</p>
+            <p id="note-2">**All spinners animate with composite properties except the multicolor spinner. The multicolor spinner unfortunately invokes repaints on color changes. :/ On the plus side, I haven't seen the frame rate dip below 60fps.</p>
+        </main>
+
+        <footer>
+            <small>Built by <a href="//twitter.com/chrisnager">@chrisnager</a> &middot; <a href="//github.com/chrisnager/simple-paper-spinner">GitHub</a> &middot; <a href="//codepen.io/chrisnager/pen/d9704e18e1d7a132c497fed2eb1d3847?editors=110">CodePen</a></small>
+        </footer>
+        <script>
+            document.querySelector('.toggle-multicolor').addEventListener('click', function() {
+                var multicolorSpinners = document.querySelectorAll('[data-options*="multicolor"]');
+
+                Array.prototype.forEach.call(multicolorSpinners, function(multicolorSpinner) {
+                    multicolorSpinner.classList.toggle('is-active');
+                });
+            });
+        </script>
+    </body>
+</html>

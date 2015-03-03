@@ -1,0 +1,133 @@
+/* Spinner rotation */
+@-webkit-keyframes spin { to { -webkit-transform: rotate(1080deg); transform: rotate(1080deg) } }
+@keyframes spin { to { -webkit-transform: rotate(1080deg); transform: rotate(1080deg) } }
+
+.spinner {
+    width: 1.75em;
+    height: 1.75em;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 .1875em;
+    will-change: transform;
+    -webkit-animation: spin 2666ms linear infinite;
+            animation: spin 2666ms linear infinite;
+    -webkit-clip-path: circle(.875em at center);
+            clip-path: circle(.875em at center);
+
+    /* Set background to same color as pseudo elements. Defaults to white */
+    background-color: #fff;
+}
+
+/* Preset colors */
+.spinner[data-options*="blue"] { color: #4285f4 }
+.spinner[data-options*="red"] { color: #db4437 }
+.spinner[data-options*="yellow"] { color: #f4b400 }
+.spinner[data-options*="green"] { color: #0f9d58 }
+
+/* Preset sizes */
+.spinner[data-options*="large"] { font-size: 2em }
+.spinner[data-options*="xlarge"] { font-size: 3em }
+
+/* Multicolor */
+@-webkit-keyframes color-shift {
+    /* Blue */
+    from { box-shadow: inset 0 0 0 .1875em #4285f4 }
+    22% { box-shadow: inset 0 0 0 .1875em #4285f4 }
+
+    /* Red */
+    23% { box-shadow: inset 0 0 0 .1875em #db4437 }
+    48% { box-shadow: inset 0 0 0 .1875em #db4437 }
+
+    /* Yellow */
+    49% { box-shadow: inset 0 0 0 .1875em #f4b400 }
+    73% { box-shadow: inset 0 0 0 .1875em #f4b400 }
+
+    /* Green */
+    74% { box-shadow: inset 0 0 0 .1875em #0f9d58 }
+    98% { box-shadow: inset 0 0 0 .1875em #0f9d58 }
+
+    /* Back to blue */
+    to { box-shadow: inset 0 0 0 .1875em #4285f4 }
+}
+@keyframes color-shift {
+    /* Blue */
+    from { box-shadow: inset 0 0 0 .1875em #4285f4 }
+    22% { box-shadow: inset 0 0 0 .1875em #4285f4 }
+
+    /* Red */
+    23% { box-shadow: inset 0 0 0 .1875em #db4437 }
+    48% { box-shadow: inset 0 0 0 .1875em #db4437 }
+
+    /* Yellow */
+    49% { box-shadow: inset 0 0 0 .1875em #f4b400 }
+    73% { box-shadow: inset 0 0 0 .1875em #f4b400 }
+
+    /* Green */
+    74% { box-shadow: inset 0 0 0 .1875em #0f9d58 }
+    98% { box-shadow: inset 0 0 0 .1875em #0f9d58 }
+
+    /* Back to blue */
+    to { box-shadow: inset 0 0 0 .1875em #4285f4 }
+}
+
+/* Forced to duplicate `spin` keyframes for multicolor spinner.
+ * Otherwise, spinner continues to rotate without resetting to account for color changes */
+@-webkit-keyframes multicolor-spin { to { -webkit-transform: rotate(1080deg); transform: rotate(1080deg) } }
+@keyframes multicolor-spin { to { -webkit-transform: rotate(1080deg); transform: rotate(1080deg) } }
+
+.spinner[data-options*="multicolor"] { will-change: transform, box-shadow }
+.spinner[data-options*="multicolor"].is-active { -webkit-animation: multicolor-spin 2666ms linear infinite, color-shift 8531.2ms infinite linear; animation: multicolor-spin 2666ms linear infinite, color-shift 8531.2ms infinite linear }
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    position: absolute;
+    width: 7em;
+    height: 1.75em;
+    background-color: inherit;
+}
+
+@-webkit-keyframes shape-shift-before { to { -webkit-transform: skewX(-45deg) translate(.875em, -.875em); transform: skewX(-45deg) translate(.875em, -.875em) } }
+
+@keyframes shape-shift-before { to { -webkit-transform: skewX(-45deg) translate(.875em, -.875em); transform: skewX(-45deg) translate(.875em, -.875em) } }
+
+.spinner::before {
+    -webkit-transform: skewX(80deg) translate(.875em, -.875em);
+        -ms-transform: skewX(80deg) translate(.875em, -.875em);
+            transform: skewX(80deg) translate(.875em, -.875em);
+    -webkit-animation: shape-shift-before 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+            animation: shape-shift-before 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+}
+
+@-webkit-keyframes shape-shift-after { to { -webkit-transform: skewX(45deg) translate(.875em, .875em); transform: skewX(45deg) translate(.875em, .875em) } }
+
+@keyframes shape-shift-after { to { -webkit-transform: skewX(45deg) translate(.875em, .875em); transform: skewX(45deg) translate(.875em, .875em) } }
+
+.spinner::after {
+    -webkit-transform: skewX(-80deg) translate(.875em, .875em);
+        -ms-transform: skewX(-80deg) translate(.875em, .875em);
+            transform: skewX(-80deg) translate(.875em, .875em);
+    -webkit-animation: shape-shift-after 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+            animation: shape-shift-after 1066.4ms cubic-bezier(.4, 0, .2, 1) infinite alternate;
+}
+
+/* Debug */
+.spinner[data-options*="debug"] {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.spinner[data-options*="debug"]::before { background-color: rgba(255, 0, 0, .75) }
+.spinner[data-options*="debug"]::after { background-color: rgba(0, 0, 255, .75) }
+
+.spinner[data-options*="debug--1"] {
+    margin-right: 7em;
+    overflow: visible;
+    -webkit-clip-path: none;
+            clip-path: none;
+}
+
+.spinner[data-options*="debug--1"],
+.spinner[data-options*="debug--2"] { -webkit-animation: none; animation: none }
