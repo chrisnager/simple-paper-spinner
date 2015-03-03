@@ -55,9 +55,9 @@
             <div class="spinner" data-options="blue" style="box-shadow:inset 0 0 0 .1875em,inset 0 0 0 .375em #db4437,inset 0 0 0 .5625em #f4b400,inset 0 0 0 .75em #0f9d58" role="progressbar" aria-valuetext="Loading…"></div>
             <pre><code>&lt;div class="spinner" data-options="blue" <mark>style="font-size:71px;box-shadow:inset 0 0 0 2px"</mark> role="progressbar" aria-valuetext="Loading…"&gt;&lt;/div&gt;</code></pre>
 
-            <h2>Multicolor</h2>
-            <button class="toggle-multicolor">Toggle multicolor (invokes repaints)</button>
-            <br>
+            <h2>Multicolor (invokes repaints)</h2>
+            <!--<button class="toggle-multicolor">Toggle multicolor (invokes repaints)</button>
+            <br>-->
             <div class="spinner  is-active" data-options="multicolor" role="progressbar" aria-valuetext="Loading…"></div>
             <pre><code>&lt;div class="spinner" <mark>data-options="multicolor"</mark> role="progressbar" aria-valuetext="Loading…"&gt;&lt;/div&gt;</code></pre>
 
@@ -83,8 +83,9 @@
         </main>
 
         <footer>
-            <small>Built by <a href="//twitter.com/chrisnager">@chrisnager</a> &middot; <a href="//github.com/chrisnager/simple-paper-spinner">GitHub</a> &middot; <a href="//codepen.io/chrisnager/pen/d9704e18e1d7a132c497fed2eb1d3847?editors=110">CodePen</a></small>
+            <small>Built by <a href="//twitter.com/chrisnager">@chrisnager</a> &middot; <a href="//github.com/chrisnager/simple-paper-spinner">GitHub</a> &middot; <a href="//codepen.io/chrisnager/pen/Qwremj">CodePen</a></small>
         </footer>
+
         <script>
             document.querySelector('.toggle-multicolor').addEventListener('click', function() {
                 var multicolorSpinners = document.querySelectorAll('[data-options*="multicolor"]');
