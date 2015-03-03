@@ -1,3 +1,5 @@
+![Simple paper-spinner](../gh-pages/simple-paper-spinner.gif)
+
 # Simple `<paper-spinner>`
 
 Intrigued by Keanu Lee's amazing [article](//blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html) describing how he built the official [`<paper-spinner>` Polymer element](//polymer.github.io/paper-spinner/components/paper-spinner/demo.html) seen in the [Google Material Design spec](//www.google.com/design/spec/components/progress-activity.html), I had to see if it was possible to simplify the spinner further by condensing it down to a single HTML element. My goal was to rebuild the paper-spinner in a way that was:
