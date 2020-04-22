@@ -25,7 +25,7 @@ Well…I got really close. Check it out. (Pull requests are more than welcome.)
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Chris Nager
+Copyright (c) 2015-2020 [Chris Nager](https://twitter.com/chrisnager)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
